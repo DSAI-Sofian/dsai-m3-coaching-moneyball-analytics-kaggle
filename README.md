@@ -1,182 +1,127 @@
-# dsai-m3-coaching-moneyball-analytics-kaggle
+# ⚾ dsai-m3-coaching-moneyball-analytics-kaggle
 
-# Objective
-
-Run:
-
-- Jupyter server inside `tmux`  
-- Notebook kernel attached to that server  
-- VS Code connects as a client (optional)
+![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.11-blue)
+![Conda](https://img.shields.io/badge/Environment-Conda-green)
+![AutoML](https://img.shields.io/badge/AutoML-AutoSklearn%20%7C%20Ensemble-orange)
+![Status](https://img.shields.io/badge/Project-Active-success)
 
 ---
 
-# 1. Start a tmux session
+## 📌 Overview
 
-In your **VS Code terminal (WSL)**:
+This project applies **Moneyball-style analytics** using **Automated Machine Learning (AutoML)** techniques to predict outcomes.
+
+Two approaches:
+- Auto-Sklearn (fully automated)
+- Custom Ensemble (manual modeling)
+
+---
+
+## ⚡ Quick Start
 
 ```bash
-tmux new -s jupyter
+git clone <your-repo-url>
+cd dsai-m3-coaching-moneyball-analytics-kaggle
 ```
 
-You are now inside a persistent session.
-
----
-
-# 2. Launch Jupyter server inside tmux
+### Environment
 
 ```bash
-jupyter notebook --no-browser --port=8888
+conda env create -f environment_mlsk.yml
+conda activate mlsk
 ```
 
-### What this does
-
-- `--no-browser` → avoids opening a GUI (important in WSL)  
-- `--port=8888` → fixed port for easy reconnection  
-
----
-
-# 3. Copy the access URL
-
-You’ll see output like:
-
-```
-http://127.0.0.1:8888/?token=abc123...
-```
-
-👉 Copy this entire URL (including token)
-
----
-
-# 4. Detach tmux (server keeps running)
-
-Press:
-
-```
-Ctrl + B, then D
-```
-
-Now:
-- Jupyter server continues running  
-- You can close terminal/VS Code safely  
-
----
-
-# 5. Connect from VS Code
-
-In VS Code:
-
-1. Open Command Palette:
-   ```
-   Ctrl + Shift + P
-   ```
-
-2. Select:
-   ```
-   Jupyter: Specify Jupyter Server for Connections
-   ```
-
-3. Choose:
-   ```
-   Existing
-   ```
-
-4. Paste the URL from Step 3  
-
----
-
-# 6. Open your notebook
-
-- Open `.ipynb` file in VS Code  
-- Select the connected kernel  
-- Run your cells normally  
-
----
-
-# 7. What happens now
-
-Even if:
-- VS Code closes  
-- SSH/WSL session drops  
-
-👉 Your notebook kernel **keeps running inside tmux**
-
----
-
-# 8. Reconnect later
-
-## Reattach tmux (optional)
+OR
 
 ```bash
-tmux attach -t jupyter
+conda env create -f environment_ml2.yml
+conda activate ml2
 ```
-
-## Or just reconnect via VS Code
-(using same URL)
-
----
-
-# 9. Stop everything cleanly
-
-Reattach tmux:
 
 ```bash
-tmux attach -t jupyter
-```
-
-Then:
-
-```
-Ctrl + C   # stop Jupyter
-exit       # exit tmux
+jupyter notebook
 ```
 
 ---
 
-# 10. Optional stability improvements
+## 🧠 Notebooks
 
-## Disable idle shutdown
+### Auto-Sklearn
+- Automated model selection
+- Fast baseline
 
-```bash
-jupyter notebook --no-browser --port=8888 \
---NotebookApp.shutdown_no_activity_timeout=0
+### AutoML Ensemble
+- Manual feature engineering
+- Model stacking/blending
+
+---
+
+## 🏆 Model Comparison & Leaderboard
+
+| Rank | Model Approach        | Description                         | Strengths                     | Weaknesses                  | Score* |
+|------|---------------------|-------------------------------------|-------------------------------|-----------------------------|--------|
+| 1    | Ensemble (Custom)   | Stacking/blending multiple models   | High performance, flexible    | More complex                | TBD    |
+| 2    | Auto-Sklearn        | Automated pipeline + ensemble       | Fast, minimal effort          | Less control                | TBD    |
+
+*Replace scores with actual Kaggle metric (e.g., RMSE, Accuracy)
+
+---
+
+## 📊 Evaluation Notes
+
+- Ensemble models typically outperform due to:
+  - Feature engineering
+  - Model diversity
+- Auto-Sklearn provides strong baseline quickly
+
+---
+
+## 📂 Structure
+
+```
+project/
+├── documentation/
+├── notebooks
+├── data
+├── environments
+└── README.md
 ```
 
 ---
 
-## Use logging (optional)
+## 📚 Documentation
 
-```bash
-jupyter notebook > jupyter.log 2>&1
-```
-
----
-
-# 11. Common pitfalls
-
-| Issue               | Cause                    |
-| ------------------- | ------------------------ |
-| Kernel dies         | Jupyter not inside tmux  |
-| Can't reconnect     | Token changed            |
-| Port conflict       | Another Jupyter instance |
-| Job stops overnight | Laptop sleep             |
+See `/documentation` folder for:
+- Guides
+- Slides
+- Learning materials
 
 ---
 
-# 12. Recommended minimal workflow
+## ⚙️ Dependencies
 
-```bash
-tmux new -s jupyter
-jupyter notebook --no-browser --port=8888
-# Copy URL
-# Detach: Ctrl+B D
-```
+### ml2 (Ensemble)
+- Python 3.11
+- pandas, numpy, sklearn
+- lightgbm, statsmodels
+- matplotlib, seaborn
+
+### mlsk (Auto-Sklearn)
+- Python 3.9
+- auto-sklearn
+- sklearn stack
+- graphviz
 
 ---
 
-# Final note
+## ⚠️ Disclaimer
 
-This setup gives you:
+Models used are **not exhaustive** and represent a subset of possible approaches.
 
-- Persistent execution  
-- UI-independent training  
-- Safe long-running jobs (3+ hours)
+---
+
+## 🚀 Future Improvements
+
+- Add MLflow tracking
+- Expand ensemble techniques
+- Hyperparameter tuning
