@@ -13,7 +13,7 @@ This project applies **Moneyball-style analytics** using **Automated Machine Lea
 
 Two approaches:
 - Auto-Sklearn (fully automated)
-- Custom Ensemble (manual modeling)
+- AutoML and Custom Ensemble (manual modeling)
 
 ---
 
